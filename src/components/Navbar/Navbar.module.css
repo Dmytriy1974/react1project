@@ -1,0 +1,15 @@
+.nav {
+  grid-area: n;
+  background-color: aqua;
+  padding: 30px;
+}
+.item > a {
+  color: white;
+}
+/* nav >div{
+ color: red;
+  background-color: pink;
+} */
+.item.active {
+  color: gold;
+}
