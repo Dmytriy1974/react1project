@@ -1,5 +1,5 @@
 import s from './Profile.module.css'
-import MyPosts from './myPosts/myPosts'
+import MyPosts from "./MyPosts/MyPosts";
 const Profile = () => {
   console.log(s)
   return <div className={s.content}>
