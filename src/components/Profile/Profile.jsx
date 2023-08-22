@@ -7,7 +7,7 @@ const Profile = () => {
     </div>
     <div>
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmWSR-bANXE5sNDP3dyPJrFlCvku1OQ-gyTg&usqp=CAU" />
-      Discription
+      Description
     </div>
     <MyPosts hey='yo' />
   </div>
