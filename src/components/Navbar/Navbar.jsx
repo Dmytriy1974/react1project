@@ -5,21 +5,19 @@ import s from './Navbar.module.css'
 // }
 
 const Navbar = () => {
-  console.log(s.item)
-  // console.log({s.item})
-  
-    return    <nav className={s.nav}>
-  <div className={s.item}>
-      <a href="s"> Profile</a>
+ 
+  return <nav className={s.nav}>
+    <div className={s.item}>
+      <a href="/profile"> Profile</a>
     </div>
     <div className={s.item}>
-      <a href="s">Messages</a>
+      <a href="/dialogs">Messages</a>
     </div>
     <div className={s.item}>
       <a href="s">News</a>
     </div>
     <div className={`${s.item} ${s.active}`}>
-        <a className={`${s.item} ${s.active}`} href="s" >Music</a>
+      <a className={`${s.item} ${s.active}`} href="s" >Music</a>
     </div>
     <div className={s.item}>
       <a href="s">Settings</a>
