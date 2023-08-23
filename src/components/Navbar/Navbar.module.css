@@ -5,11 +5,14 @@
 }
 .item > a {
   color: white;
+  text-decoration: none;
+  /* padding-top: 40px; */
+  /* // Why it doesnt work? */
 }
 /* nav >div{
  color: red;
   background-color: pink;
 } */
-.item.active {
+.item a.activeLink {
   color: gold;
 }
