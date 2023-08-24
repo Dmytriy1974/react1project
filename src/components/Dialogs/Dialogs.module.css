@@ -5,8 +5,12 @@
 .abonents {
     padding: 10px;
 }
+
+.abonentsItem {
+
+}
 .abonentsItem .active {
-    color: gold;
+    color: rgb(255, 0, 183);
 }
 
 .messages {
