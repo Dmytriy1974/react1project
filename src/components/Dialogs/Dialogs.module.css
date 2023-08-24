@@ -1,0 +1,18 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+.abonents {
+    padding: 10px;
+}
+.abonentsItem .active {
+    color: gold;
+}
+
+.messages {
+    padding: 10px;
+
+}
+
+.messagesItem {
+}

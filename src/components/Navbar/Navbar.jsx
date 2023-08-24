@@ -9,20 +9,32 @@ const Navbar = () => {
 
   return <nav className={s.nav}>
     <div className={s.item}>
-      <NavLink to="/profile" activeClassName={s.activeLink}> Profile</NavLink>
+      <NavLink to="/profile" className={
+        ({ isActive, isPending }) =>
+          isActive ? s.activeLink : ''}
+      > Profile</NavLink>
+    </div>
+
+    <div className={s.item}>
+      <NavLink to="/dialogs" className={
+        ({ isActive, isPending }) =>
+          isActive ? s.activeLink : ''}>Messages</NavLink>
     </div>
     <div className={s.item}>
-      <NavLink to="/dialogs" activeClassName={s.activeLink}>Messages</NavLink>
-    </div>
-    <div className={s.item}>
-      <NavLink to="news">News</NavLink>
+      <NavLink to="/news" className={
+        ({ isActive, isPending }) =>
+          isActive ? s.activeLink : ''}>News</NavLink>
     </div>
     <div className={s.item} >
-      <NavLink to="music" >Music</NavLink>
+      <NavLink to="/music" className={
+        ({ isActive, isPending }) =>
+          isActive ? s.activeLink : ''}>Music</NavLink>
     </div>
     <div className={s.item}>
-      <NavLink to="settings">Settings</NavLink>
+      <NavLink to="/settings" className={
+        ({ isActive, isPending }) =>
+          isActive ? s.activeLink : ''}>Settings</NavLink>
     </div>
-  </nav>
+  </nav >
 }
 export default Navbar

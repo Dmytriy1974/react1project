@@ -4,4 +4,5 @@ header {
 }
 .header img {
   width: 50px;
+  height: 100%;
 }
