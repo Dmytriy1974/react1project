@@ -1,34 +1,31 @@
 import s from './Dialogs.module.css'
 import { NavLink } from 'react-router-dom'
+import Messages from './Messages/Messages'
+import AbonentsItem from './AbonentsItem/AbonentsItem'
 const Dialogs = (props) => {
+    let abonentData = [
+        { id: 1, name: 'Dimych' },
+        { id: 2, name: 'Andrey' },
+        { id: 3, name: 'Sveta' },
+        { id: 4, name: 'Sasha' },
+        { id: 5, name: 'Victor' },
+        { id: 6, name: 'Valera' }]
+
+    let messagesData = [
+        { id: 1, message: 'Hi' },
+        { id: 2, message: 'How are you?' },
+        { id: 3, message: 'How its going?' }]
+
+    let dialogsElements = abonentData.map(abonent => <AbonentsItem name={abonent.name} id={abonent.id} /> )
+    let messagesElements = messagesData.map(mesg => <Messages message={mesg.message} />)
     return (
         <div className={s.dialogs}>
             <div className={s.abonents}>
-                <div className={s.abonentsItem}>
-                    <NavLink to="/dialogs/1" className={ ({isActive})=> isActive? s.active : ''}> Dimych</NavLink>
-                </div>
-                <div className={s.abonentsItem}>
-                    <NavLink to="/dialogs/2"> Andrey</NavLink>
-                </div>
-                <div className={s.abonentsItem}>
-                    <NavLink to="/dialogs/3"> Sveta</NavLink>
-                </div>
-                <div className={s.abonentsItem}>
-                    <NavLink to="/dialogs/4"> Sasha</NavLink>
-                </div>
-                <div className={s.abonentsItem}>
-                    <NavLink to="/dialogs/5"> Victor</NavLink>
-                </div>
-                <div className={s.abonentsItem}>
-                    <NavLink to="/dialogs/6"> Valera</NavLink>
-                </div>
-
+               {dialogsElements}
             </div>
 
             <div className={s.messages}>
-                <div className={s.messagesItem}> Hi</div>
-                <div className={s.messagesItem}> How are you?</div>
-                <div className={s.messagesItem}> How its going?</div>
+                {messagesElements}
             </div>
         </div>
 
