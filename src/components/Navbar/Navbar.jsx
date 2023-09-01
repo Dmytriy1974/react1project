@@ -5,7 +5,7 @@ import s from './Navbar.module.css'
 // 'item': "item"
 // }
 
-const Navbar = () => {
+const Navbar = (props) => {
 
   return <nav className={s.nav}>
     <div className={s.item}>
@@ -34,6 +34,15 @@ const Navbar = () => {
       <NavLink to="/settings" className={
         ({ isActive, isPending }) =>
           isActive ? s.activeLink : ''}>Settings</NavLink>
+    </div>
+    debugger
+    <div className={s.friends}>
+      <NavLink to="/friends" className={
+        ({ isActive}) =>
+          isActive ? s.activeLink : ''}>Friends</NavLink>
+          <span> {props.state.abonentData.img} </span>
+          <span> {props.state.abonentData.name} </span>
+
     </div>
   </nav >
 }
