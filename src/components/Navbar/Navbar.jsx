@@ -6,7 +6,8 @@ import s from './Navbar.module.css'
 // }
 
 const Navbar = (props) => {
-
+  const friendsAbonent = props.state.abonentData.filter(pers => { pers.isFriend === true })
+debugger
   return <nav className={s.nav}>
     <div className={s.item}>
       <NavLink to="/profile" className={
@@ -37,17 +38,18 @@ const Navbar = (props) => {
     </div>
     <div className={s.friends}>
       <NavLink to="/friends" className={
-        ({ isActive}) =>
+        ({ isActive }) =>
           isActive ? s.activeLink : ''}>Friends</NavLink>
-const index = props.state.abonentData.findIndex (pers => {
- return pers.isFriend =='yes'}) 
-          <div>
-          <span> <img src={props.state.abonentData[index].img} /> </span>
+      <div className={s.friendsAbonent}>
+        friendsAbonent.map(abonent => { 
+      return <div>
+          <span> <img src={abonent.img} /> </span>
           </div>
           <div>
-          <span> {props.state.abonentData[index].name} </span>
-
+          <span> {abonent.name} </span>
           </div>
+})
+      </div>
 
     </div>
   </nav >
