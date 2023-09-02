@@ -35,13 +35,19 @@ const Navbar = (props) => {
         ({ isActive, isPending }) =>
           isActive ? s.activeLink : ''}>Settings</NavLink>
     </div>
-    debugger
     <div className={s.friends}>
       <NavLink to="/friends" className={
         ({ isActive}) =>
           isActive ? s.activeLink : ''}>Friends</NavLink>
-          <span> {props.state.abonentData.img} </span>
-          <span> {props.state.abonentData.name} </span>
+const index = props.state.abonentData.findIndex (pers => {
+ return pers.isFriend =='yes'}) 
+          <div>
+          <span> <img src={props.state.abonentData[index].img} /> </span>
+          </div>
+          <div>
+          <span> {props.state.abonentData[index].name} </span>
+
+          </div>
 
     </div>
   </nav >

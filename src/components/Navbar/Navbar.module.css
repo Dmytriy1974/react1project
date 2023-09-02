@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 15px;
 }
-.item  a {
+.item a {
   color: white;
   text-decoration: none;
   /* padding-top: 40px; */
@@ -27,6 +27,14 @@
 .friends {
   margin-top: 60px;
 }
+.friends img {
+  width: 30px;
+  border-radius: 20px;
+  }
+
+  .friends span{
+    font-size: 12px;
+  }
 
 .friends > a {
   color: white;
