@@ -21,4 +21,16 @@
 }
 
 .messagesItem {
+    display: flex;
+   font-size: 10px;
+}
+
+.DimMessages{
+    padding-left: 0%;
+
+}
+
+.ElseMessages{
+    color: red;
+    padding-right: 0cm;
 }

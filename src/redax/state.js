@@ -19,9 +19,9 @@ let state={
       { isFriend: true, id: 6, name: 'Valera', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGnK1ckF5OFYR6pitgRrtN5eshysmmFGatQCwyvK078NhOW8yrTMOnMQmXvYoeYM1t4CQ&usqp=CAU'
     }],
 messagesData: [
-      { id: 1, message: 'Hi' },
-      { id: 2, message: 'How are you?' },
-      { id: 3, message: 'How its going?' }]
+      { fromDim: true, id: 1, message: 'Hi' },
+      { fromDim: false, id: 2, message: 'How are you, Dimych?' },
+      { fromDim: true, id: 3, message: 'How its going?' }]
    }  
     }
 
