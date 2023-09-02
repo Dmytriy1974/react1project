@@ -1,16 +1,18 @@
 .dialogs {
-  display: grid;
-  grid-template-columns: 2fr 10fr;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
 }
+
 .abonents {
     padding: 10px;
 }
 
 .abonentsItem img {
-   
-        width: 40px;
-        border-radius: 30px;
-   }
+
+    width: 40px;
+    border-radius: 30px;
+}
+
 .abonentsItem .active {
     color: rgb(255, 0, 183);
 }
@@ -22,15 +24,16 @@
 
 .messagesItem {
     display: flex;
-   font-size: 10px;
+    justify-content: space-between;
+    font-size: 10px;
 }
 
-.DimMessages{
+.DimMessages {
     padding-left: 0%;
 
 }
 
-.ElseMessages{
+.ElseMessages {
     color: red;
     padding-right: 0cm;
 }

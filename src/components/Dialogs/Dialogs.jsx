@@ -22,8 +22,8 @@ const Dialogs = (props) => {
 
     // )
 
-let listDimMessage = messagesElementsDim.map (mesg=><Messages messDim={mesg.message} /> )
-let listElseMessage = messagesElementsElse.map (mesg=><Messages messElse={mesg.message} /> )
+let listDimMessage = messagesElementsDim.map(mesg=><Messages messDim={mesg.message} /> )
+let listElseMessage = messagesElementsElse.map(mesg=><Messages messElse={mesg.message} /> )
  return (
         <div className={s.dialogs}>
             <div className={s.abonents}>
