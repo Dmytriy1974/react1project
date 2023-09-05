@@ -1,5 +1,5 @@
 import {rerenderEntireTree} from '../rerender'
-let state={
+export let state={
     profilePage: {
         postsData:[
     {id:1, message: "Hi, How are you?", likeCounts:15},
@@ -27,8 +27,7 @@ messagesData: [
     }
 export let addPosts=(inputMessage)=>{
 let post =  {id:3, message: inputMessage, likeCounts:1}
-   state.profilePage.postsData.push(post)
+   state.profilePage.postsData = [...state.profilePage.postsData, post]
+    rerenderEntireTree(state)
 }
-rerenderEntireTree(state)
- export default  state
- 
+

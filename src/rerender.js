@@ -8,6 +8,7 @@ import { addPosts } from "./redax/state";
 
 export let rerenderEntireTree =(state)=>{
   const root = ReactDOM.createRoot(document.getElementById("root"));
+  console.log('asdasdasd')
 root.render(
   <React.StrictMode>
     <App state={state} addPosts={addPosts} />
