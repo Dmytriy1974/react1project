@@ -12,7 +12,7 @@ export let rerenderEntireTree =(state)=>{
 root.render(
   <React.StrictMode>
     <App state={state} addPosts={addPosts} />
-  </React.StrictMode>;
+  </React.StrictMode>
 )
 }
 
