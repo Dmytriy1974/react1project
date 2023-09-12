@@ -25,14 +25,23 @@ const Dialogs = (props) => {
 
     let listDimMessage = messagesElementsDim.map(mesg => <Messages messDim={mesg.message} />)
     let listElseMessage = messagesElementsElse.map(mesg => <Messages messElse={mesg.message} />)
-    
-let newMsgElement = React.createRef()
-    let addMessage=()=>{
-        let text= newMsgElement.current.value
-        alert(text)
+
+    let newMsgElement = React.createRef()
+    let addMessage = () => {
+        let text = newMsgElement.current.value
+        props.addMessagesData(text)
+        props.updateMsgChange('')
+
     }
+    let onMsgChange = () => {
+        let text = newMsgElement.current.value
+        props.updateMsgChange(text)
+    }
+
     return (
+
         <div className={s.dialogs}>
+
             <div className={s.abonents}>
                 {dialogsElements}
             </div>
@@ -42,14 +51,14 @@ let newMsgElement = React.createRef()
                 {listElseMessage}
             </div>
             <div>
-               <div>
-                <textarea  ref={newMsgElement}>Enter message</textarea>
+                <div>
+                    <textarea onChange={onMsgChange} ref={newMsgElement} value={props.state.newMsgText} />
+                </div>
+                <div>
+                    <button onClick={addMessage}>Add message</button>
+                </div>
             </div>
-            <div>
-                <button onClick={addMessage}>Add message</button>
-            </div>  
-            </div>
-           
+
         </div>
 
     )
