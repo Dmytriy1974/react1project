@@ -1,5 +1,5 @@
 import "./index.css";
-import impStore from "./redax/store";
+import impStore from "./redax/redux-store";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -18,4 +18,6 @@ let rerenderEntireTree = (state) => {
 };
 
 rerenderEntireTree(impStore.getState());
-impStore.subscribe(rerenderEntireTree);
+impStore.subscribe(()=>{
+  rerenderEntireTree(impStore.getState())
+});

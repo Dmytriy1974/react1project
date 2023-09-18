@@ -6,7 +6,14 @@ export const updadePostChangeActionCreator = (text) => ({
   inputChange: text,
 });
 
-const profileReduser = (state, action) => {
+let initialState={
+  postsData: [
+    { id: 1, message: "Hi, How are you?", likeCounts: 15 },
+    { id: 2, message: "It's my first message", likeCounts: 20 },
+  ],
+  newPostText: "it-kamasutra",
+};
+const profileReduser = (state=initialState, action) => {
   switch (action.type) {
     case ADD_POSTS:
       let post = {
