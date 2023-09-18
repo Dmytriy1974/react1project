@@ -1,32 +1,26 @@
 import React from 'react';
-import s from './MyPosts.module.css'
-import Post from './Post/Post'
+import s from './MyPosts.module.css';
+import Post from './Post/Post';
+import { addPostActionCreator, updadePostChangeActionCreator } from '../../../redax/profile-reduser';
 const MyPosts = (props) => {
-
-  // let postsData=[
-  //   {id:1, message: "Hi, How are you?", likeCounts:15},
-  //   {id:2, message: "It's my first message", likeCounts:20}]
-
+    
   let postsmodifData = props.postsData.map(pst => <Post message={pst.message}
     likeCounts={pst.likeCounts} />)
 
-  let newPostElement = React.createRef();
+  // let newPostElement = React.createRef();
   let addPost = () => {
     // let text=document.getElementById('new-text').value
-    let text = newPostElement.current.value
-    props.addPosts(text)
-    props.updatePostChange('')
-
+    // let text = newPostElement.current.value
+    props.dispatch(addPostActionCreator ())
   }
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value
-    props.updatePostChange(text)
+  let onPostChange = (event) => {
+    let text = event.target.value
+    props.dispatch(updadePostChangeActionCreator (text))
   }
   return (
     <div className={s.postsBlock}>
       <div>
-        <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
+        <textarea onChange={onPostChange} value={props.newPostText} />
       </div>
       <div>
         <button onClick={addPost}>Add post</button>

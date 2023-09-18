@@ -1,3 +1,6 @@
+import dialogsReduser from "./dialogs-reduser";
+import profileReduser from "./profile-reduser";
+
 let store = {
   _state: {
     profilePage: {
@@ -54,40 +57,21 @@ let store = {
       newMsgText: "lets message",
     },
   },
-  getState() {
-    return this._state;
-  },
   _callSubscriber() {
     console.log("State changed");
   },
-  addPosts() {
-    let post = {
-      id: 3,
-      message: this._state.profilePage.newPostText,
-      likeCounts: 1,
-    };
-    this._state.profilePage.postsData.push(post);
-    this._callSubscriber(this._state);
-  },
-  updatePostChange(inputChange) {
-    this._state.profilePage.newPostText = inputChange;
-    this._callSubscriber(this._state);
-  },
-  addMessagesData() {
-    let newMsg = {
-      fromDim: false,
-      id: 4,
-      message: this._state.messagesPage.newMsgText,
-    };
-    this._state.messagesPage.messagesData.push(newMsg);
-    this._callSubscriber(this._state);
-  },
-  updateMsgChange(inputChng) {
-    this._state.messagesPage.newMsgText = inputChng;
-    this._callSubscriber(this._state);
+  getState() {
+    return this._state;
   },
   subscribe(observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch(action) {
+    this._state.profilePage = profileReduser(this._state.profilePage, action);
+    this._state.messagesPage = dialogsReduser(this._state.messagesPage, action);
+
+    this._callSubscriber(this._state);
   },
 };
 

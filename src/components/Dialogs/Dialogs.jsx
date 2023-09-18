@@ -1,8 +1,10 @@
 import React from 'react'
 import s from './Dialogs.module.css'
-import { NavLink } from 'react-router-dom'
 import Messages from './Messages/Messages'
 import AbonentsItem from './AbonentsItem/AbonentsItem'
+import { addMessageCreateAction, updateMsgChangeCreateAction } from '../../redax/dialogs-reduser'
+
+
 const Dialogs = (props) => {
 
     let dialogsElements = props.state.abonentData.map(abonent => <AbonentsItem name={abonent.name} id={abonent.id} img={abonent.img} />)
@@ -28,14 +30,13 @@ const Dialogs = (props) => {
 
     let newMsgElement = React.createRef()
     let addMessage = () => {
-        let text = newMsgElement.current.value
-        props.addMessagesData(text)
-        props.updateMsgChange('')
+        // let text = newMsgElement.current.value
+        props.dispatch(addMessageCreateAction ())
 
     }
     let onMsgChange = () => {
         let text = newMsgElement.current.value
-        props.updateMsgChange(text)
+        props.dispatch(updateMsgChangeCreateAction(text))
     }
 
     return (
