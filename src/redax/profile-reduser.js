@@ -1,7 +1,7 @@
 const ADD_POSTS = "ADD-POSTS";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 export const addPostActionCreator = () => ({ type: ADD_POSTS });
-export const updadePostChangeActionCreator = (text) => ({
+export const updatePostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,
   inputChange: text,
 });
