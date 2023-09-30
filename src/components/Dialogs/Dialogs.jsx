@@ -2,41 +2,28 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Messages from './Messages/Messages'
 import AbonentsItem from './AbonentsItem/AbonentsItem'
-import { addMessageCreateAction, updateMsgChangeCreateAction } from '../../redax/dialogs-reduser'
 
 
 const Dialogs = (props) => {
+    let dialogsElements = props.messagesPage.abonentData.map(abonent => <AbonentsItem name={abonent.name} id={abonent.id} img={abonent.img} />)
+    const messagesElementsDim = props.messagesPage.messagesData.filter(mesg => mesg.fromDim === true)
+    const messagesElementsElse = props.messagesPage.messagesData.filter(mesg => mesg.fromDim === false)
 
-    let dialogsElements = props.state.abonentData.map(abonent => <AbonentsItem name={abonent.name} id={abonent.id} img={abonent.img} />)
-    const messagesElementsDim = props.state.messagesData.filter(mesg => mesg.fromDim === true)
-    const messagesElementsElse = props.state.messagesData.filter(mesg => mesg.fromDim === false)
 
-    // let messagesElements = props.state.messagesData.map(mesg => <Messages message={mesg.message} />)
-    // return (
-    //     <div className={s.dialogs}>
-    //         <div className={s.abonents}>
-    //            {dialogsElements}
-    //         </div>
-
-    //         <div className={s.messages}>
-    //             {messagesElements}
-    //         </div>
-    //     </div>
-
-    // )
 
     let listDimMessage = messagesElementsDim.map(mesg => <Messages messDim={mesg.message} />)
     let listElseMessage = messagesElementsElse.map(mesg => <Messages messElse={mesg.message} />)
 
     let newMsgElement = React.createRef()
-    let addMessage = () => {
+    let onAddMessage = () => {
+
         // let text = newMsgElement.current.value
-        props.dispatch(addMessageCreateAction ())
+        props.addMessage()
 
     }
     let onMsgChange = () => {
         let text = newMsgElement.current.value
-        props.dispatch(updateMsgChangeCreateAction(text))
+        props.updateMsgChange(text)
     }
 
     return (
@@ -53,10 +40,10 @@ const Dialogs = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea onChange={onMsgChange} ref={newMsgElement} value={props.state.newMsgText} />
+                    <textarea onChange={onMsgChange} ref={newMsgElement} value={props.messagesPage.newMsgText} />
                 </div>
                 <div>
-                    <button onClick={addMessage}>Add message</button>
+                    <button onClick={onAddMessage}>Add message</button>
                 </div>
             </div>
 

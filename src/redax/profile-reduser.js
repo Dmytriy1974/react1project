@@ -6,33 +6,37 @@ export const updatePostChangeActionCreator = (text) => ({
   inputChange: text,
 });
 
-let initialState={
+let initialState = {
   postsData: [
     { id: 1, message: "Hi, How are you?", likeCounts: 15 },
     { id: 2, message: "It's my first message", likeCounts: 20 },
   ],
   newPostText: "it-kamasutra",
 };
-const profileReduser = (state=initialState, action) => {
+const profileReduser = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POSTS:
+    case ADD_POSTS: {
       let post = {
         id: 3,
         message: state.newPostText,
         likeCounts: 1,
       };
-      state.postsData.push(post);
-      state.newPostText = "";
+      let stateCopy = { ...state };
+      stateCopy.postsData = [...state.postsData];
+      stateCopy.postsData.push(post);
+      stateCopy.newPostText = "";
 
-      return state;
+      return stateCopy;
+    }
 
-    case UPDATE_POST_CHANGE:
-      state.newPostText = action.inputChange;
-      return state;
+    case UPDATE_POST_CHANGE: {
+      let stateCopy = { ...state };
+      stateCopy.newPostText = action.inputChange;
+      return stateCopy;
+    }
 
     default:
       return state;
   }
-
 };
 export default profileReduser;
