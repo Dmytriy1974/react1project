@@ -1,4 +1,4 @@
-import {Link, NavLink} from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import s from './Navbar.module.css'
 // let s = {
 //   'nav': "nav",
@@ -12,40 +12,40 @@ const Navbar = (props) => {
     return <nav className={s.nav}>
         <div className={s.item}>
             <NavLink to="/profile" className={
-                ({isActive, isPending}) =>
+                ({ isActive, isPending }) =>
                     isActive ? s.activeLink : ''}
             > Profile</NavLink>
         </div>
 
         <div className={s.item}>
             <NavLink to="/dialogs/*" className={
-                ({isActive, isPending}) =>
+                ({ isActive, isPending }) =>
                     isActive ? s.activeLink : ''}>Messages</NavLink>
         </div>
         <div className={s.item}>
             <NavLink to="/news" className={
-                ({isActive, isPending}) =>
+                ({ isActive, isPending }) =>
                     isActive ? s.activeLink : ''}>News</NavLink>
         </div>
         <div className={s.item}>
             <NavLink to="/music" className={
-                ({isActive, isPending}) =>
+                ({ isActive, isPending }) =>
                     isActive ? s.activeLink : ''}>Music</NavLink>
         </div>
         <div className={s.item}>
             <NavLink to="/settings" className={
-                ({isActive, isPending}) =>
+                ({ isActive, isPending }) =>
                     isActive ? s.activeLink : ''}>Settings</NavLink>
         </div>
         <div className={s.friends}>
             <NavLink to="/friends" className={
-                ({isActive}) =>
+                ({ isActive }) =>
                     isActive ? s.activeLink : ''}>Friends</NavLink>
             <div className={s.friendsAbonent}>
                 {friendsAbonent.map(abonent => {
-                    return <div>
+                    return <div key={abonent.id} >
                         <div>
-                            <span> <img src={abonent.img}/> </span>
+                            <span> <img src={abonent.img} /> </span>
                         </div>
                         <div>
                             <span> {abonent.name} </span>

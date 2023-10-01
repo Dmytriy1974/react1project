@@ -5,14 +5,14 @@ import AbonentsItem from './AbonentsItem/AbonentsItem'
 
 
 const Dialogs = (props) => {
-    let dialogsElements = props.messagesPage.abonentData.map(abonent => <AbonentsItem name={abonent.name} id={abonent.id} img={abonent.img} />)
+    let dialogsElements = props.messagesPage.abonentData.map(abonent => <AbonentsItem name={abonent.name} key={abonent.id} id={abonent.id} img={abonent.img} />)
     const messagesElementsDim = props.messagesPage.messagesData.filter(mesg => mesg.fromDim === true)
     const messagesElementsElse = props.messagesPage.messagesData.filter(mesg => mesg.fromDim === false)
 
 
 
-    let listDimMessage = messagesElementsDim.map(mesg => <Messages messDim={mesg.message} />)
-    let listElseMessage = messagesElementsElse.map(mesg => <Messages messElse={mesg.message} />)
+    let listDimMessage = messagesElementsDim.map(mesg => <Messages key={mesg.id} messDim={mesg.message} />)
+    let listElseMessage = messagesElementsElse.map(mesg => <Messages key={mesg.id} messElse={mesg.message} />)
 
     let newMsgElement = React.createRef()
     let onAddMessage = () => {
@@ -25,7 +25,7 @@ const Dialogs = (props) => {
         let text = newMsgElement.current.value
         props.updateMsgChange(text)
     }
-
+    debugger
     return (
 
         <div className={s.dialogs}>
