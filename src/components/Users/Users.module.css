@@ -1,0 +1,8 @@
+.users {
+  display: flex;
+}
+
+.users img {
+  width: 30px;
+  border-radius: 20px;
+}

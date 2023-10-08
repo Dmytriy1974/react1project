@@ -30,11 +30,11 @@
 .friends img {
   width: 30px;
   border-radius: 20px;
-  }
+}
 
-  .friends span{
-    font-size: 12px;
-  }
+.friends span {
+  font-size: 12px;
+}
 
 .friends > a {
   color: white;
@@ -42,6 +42,6 @@
   text-decoration: none;
 }
 .friendsAbonent {
-display: flex;
-gap: 10px;
+  display: flex;
+  gap: 10px;
 }

@@ -25,7 +25,6 @@ const Dialogs = (props) => {
         let text = newMsgElement.current.value
         props.updateMsgChange(text)
     }
-    debugger
     return (
 
         <div className={s.dialogs}>

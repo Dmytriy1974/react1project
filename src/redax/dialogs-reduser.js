@@ -54,28 +54,24 @@ let initialState = {
 };
 
 const dialogsReduser = (state = initialState, action) => {
-  let stateCopy;
   switch (action.type) {
-    case UPDATE_MSG_CHANGE: {
-      stateCopy = {
+    case UPDATE_MSG_CHANGE:
+      return {
         ...state,
         newMsgText: action.inputChng,
       };
-      return stateCopy;
-    }
-    case ADD_MESSAGES_DATA: {
+
+    case ADD_MESSAGES_DATA:
       let newMsg = {
         fromDim: false,
         id: 4,
         message: state.newMsgText,
       };
-      stateCopy = {
+      return {
         ...state,
-        messagesData: [...state.messagesData, { newMsg }],
+        messagesData: [...state.messagesData, newMsg],
         newMsgText: "",
       };
-      return stateCopy;
-    }
 
     default:
       return state;
