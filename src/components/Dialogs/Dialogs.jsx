@@ -2,6 +2,7 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Messages from './Messages/Messages'
 import AbonentsItem from './AbonentsItem/AbonentsItem'
+import { Test } from '../../assets/Test'
 
 
 const Dialogs = (props) => {
@@ -44,6 +45,7 @@ const Dialogs = (props) => {
                 <div>
                     <button onClick={onAddMessage}>Add message</button>
                 </div>
+                {/* <Test /> */}
             </div>
 
         </div>
