@@ -1,10 +1,12 @@
 const ADD_POSTS = "ADD-POSTS";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
+const Set_User_Profile = "Set_User_Profile"
 export const addPostActionCreator = () => ({ type: ADD_POSTS });
 export const updatePostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,
   inputChange: text,
 });
+export const setUserProfile = (profile)=>({type:Set_User_Profile, profile})
 
 let initialState = {
   postsData: [
@@ -12,6 +14,7 @@ let initialState = {
     { id: 2, message: "It's my first message", likeCounts: 20 },
   ],
   newPostText: "it-kamasutra",
+  profile: null
 };
 const profileReduser = (state = initialState, action) => {
   switch (action.type) {
@@ -33,7 +36,11 @@ const profileReduser = (state = initialState, action) => {
         newPostText: "",
       };
     }
-
+    case Set_User_Profile:
+      return {
+        ...state,
+        profile: action.profile,
+      };
     default:
       return state;
   }
