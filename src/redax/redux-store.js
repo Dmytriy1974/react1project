@@ -6,10 +6,12 @@ import {
 import profileReduser from "./profile-reduser";
 import dialogsReduser from "./dialogs-reduser";
 import usersReduser from "./users-reduser";
+import authReducer from "./auth-reduser";
 let redusers = combineReducers({
   profilePage: profileReduser,
   messagesPage: dialogsReduser,
   usersPage: usersReduser,
+  auth: authReducer
 });
 let store = legacy_createStore(redusers);
 window.store = store;

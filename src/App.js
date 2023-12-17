@@ -8,16 +8,18 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import HeaderComponent from "./components/Header/HeaderComponent";
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
-        <Header />
+        <HeaderComponent />
         <Navbar state={props.store.getState().messagesPage} />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<ProfileContainer />} />
+            //userId? - значит, что это необязательный параметр
+            <Route path="/profile/:userId?" element={<ProfileContainer />} />
             <Route
               exact={false}
               path="/dialogs/*"
