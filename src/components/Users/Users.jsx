@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import userPhoto from '../../../src/assets/images/userImg.png'
 import { NavLink } from "react-router-dom"
 import axios from "axios"
+import { followApi } from "../../api/api"
 
 
 let Users = (props) => {
@@ -35,25 +36,28 @@ let Users = (props) => {
                         </div>
                         <div>
                             <span>
-                                {u.followed ? <button onClick={() => {
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: { "API-KEY": "ea843934-577f-4e93-9f11-fb9f43afd3a2" }
-                                    })
+                                {u.followed ? <button disabled={props.followingInProgress} onClick={() => {
+                                    debugger
+                                    props.followProgress(true)
+                                    followApi.deleteFriend(u.id)
                                         .then(response => {
-                                            if (response.data.resultCode == 0)
+                                            if (response.data.resultCode == 0) {
                                                 props.unfollow(u.id)
+                                            }
+                                            props.followProgress(false)
+
                                         })
+
                                 }}> Unfollow</button> :
-                                    <button onClick={() => {
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                                            {
-                                                withCredentials: true,
-                                                headers: { "API-KEY": "ea843934-577f-4e93-9f11-fb9f43afd3a2" }
-                                            }).then(response => {
-                                                if (response.data.resultCode == 0)
-                                                    props.follow(u.id)
-                                            })
+                                    <button disabled={props.followingInProgress} onClick={() => {
+                                        props.followProgress(true)
+                                        followApi.addFriend(u.id).then(response => {
+                                            if (response.data.resultCode == 0) {
+                                                props.follow(u.id)
+                                            }
+                                            props.followProgress(false)
+                                        })
+
                                     }} >Follow</button>}
 
                                 {u.name} {u.status}

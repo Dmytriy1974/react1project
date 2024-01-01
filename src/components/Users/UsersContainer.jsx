@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setFetching, setTotalUsersCount, setUsers, unfollow } from "../../redax/users-reduser";
+import { follow, setCurrentPage, setFetching, setTotalUsersCount, setUsers, unfollow, followProgress } from "../../redax/users-reduser";
 import Users from "./Users";
 import axios from 'axios';
 import Preloader from "../common/Preloader/Preloader";
@@ -38,7 +38,9 @@ class UsersContainer extends React.Component {
                 onPageChange={this.onPageChange}
                 users={this.props.users}
                 follow={this.props.follow}
-                unfollow={this.props.unfollow} />
+                unfollow={this.props.unfollow}
+                followProgress={this.props.followProgress}
+            />
         </>
 
 
@@ -51,14 +53,15 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
-
+debugger
 // const mapDispatchToProps = (dispatch) => {
 //     return 
 // }
 
 export default connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setFetching
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setFetching, followProgress
 })(UsersContainer)
