@@ -40,6 +40,7 @@ class UsersContainer extends React.Component {
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
                 followProgress={this.props.followProgress}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
 
@@ -57,7 +58,6 @@ const mapStateToProps = (state) => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-debugger
 // const mapDispatchToProps = (dispatch) => {
 //     return 
 // }

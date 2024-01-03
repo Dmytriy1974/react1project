@@ -7,6 +7,7 @@ import { followApi } from "../../api/api"
 
 
 let Users = (props) => {
+    console.log(props.followingInProgress)
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -36,7 +37,7 @@ let Users = (props) => {
                         </div>
                         <div>
                             <span>
-                                {u.followed ? <button disabled={props.followingInProgress} onClick={() => {
+                                {u.followed ? <button disabled={props.followingInProgress.some(idi => idi === u.id)} onClick={() => {
                                     debugger
                                     props.followProgress(true)
                                     followApi.deleteFriend(u.id)
@@ -49,7 +50,7 @@ let Users = (props) => {
                                         })
 
                                 }}> Unfollow</button> :
-                                    <button disabled={props.followingInProgress} onClick={() => {
+                                    <button disabled={props.followingInProgress.some(idi => idi === u.id)} onClick={() => {
                                         props.followProgress(true)
                                         followApi.addFriend(u.id).then(response => {
                                             if (response.data.resultCode == 0) {
