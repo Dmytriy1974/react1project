@@ -1,3 +1,5 @@
+import {createAsyncThunk} from "@reduxjs/toolkit";
+
 export const addMessageCreateAction = () => ({ type: ADD_MESSAGES_DATA });
 export const updateMsgChangeCreateAction = (text) => ({
   type: UPDATE_MSG_CHANGE,
@@ -77,4 +79,5 @@ const dialogsReduser = (state = initialState, action) => {
       return state;
   }
 };
+
 export default dialogsReduser;

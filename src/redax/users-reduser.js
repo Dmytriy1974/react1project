@@ -1,4 +1,5 @@
-import { userApi } from "../api/api";
+import {userApi} from "../api/api";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -8,9 +9,9 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const SET_FETCHING = "SET_FETCHING";
 const TOGGLE_FollowProgress = "TOGGLE_FollowProgress";
 
-export const follow = (userId) => ({ type: FOLLOW, userId });
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
-export const setUsers = (users) => ({ type: SET_USERS, users });
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({
   type: SET_CURRENT_Page,
   currentPage,
@@ -30,16 +31,34 @@ export const followProgress = (isFetching, userId) => ({
   userId,
 });
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(setFetching(true));
-    userApi.getUsers(currentPage, pageSize).then((data) => {
-      dispatch(setFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
-};
+// export const getUsersThunkCreator = (currentPage, pageSize) => {
+//   return (dispatch) => {
+//     dispatch(setFetching(true));
+//     userApi.getUsers(currentPage, pageSize).then((data) => {
+//       dispatch(setFetching(false));
+//       dispatch(setUsers(data.items));
+//       dispatch(setTotalUsersCount(data.totalCount));
+//     });
+//   };
+// }
+// ;
+export const contentSlice = createSlice({
+  name: 'users',
+  initialState: {},
+  reducers: {},
+  },
+)
+
+export const getUsersThunk = createAsyncThunk('users/get',
+  async (payload, {dispatch}) => {
+  dispatch(setFetching(true));
+
+  userApi.getUsers(payload?.pageNumber, payload?.pageSize).then((data) => {
+    dispatch(setFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
+  });
+})
 
 let initialState = {
   users: [],
@@ -56,7 +75,7 @@ const usersReduser = (state = initialState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, followed: true };
+            return {...u, followed: true};
           }
           return u;
         }),
