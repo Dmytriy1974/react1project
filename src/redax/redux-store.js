@@ -1,4 +1,5 @@
 import {
+  applyMiddleware,
   combineReducers,
   configureStore,
   legacy_createStore,
@@ -11,8 +12,8 @@ let redusers = combineReducers({
   profilePage: profileReduser,
   messagesPage: dialogsReduser,
   usersPage: usersReduser,
-  auth: authReducer
+  auth: authReducer,
 });
-let store = legacy_createStore(redusers);
+let store = legacy_createStore(redusers, applyMiddleware ());
 window.store = store;
 export default store;

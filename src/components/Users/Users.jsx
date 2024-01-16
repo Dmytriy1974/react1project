@@ -38,25 +38,24 @@ let Users = (props) => {
                         <div>
                             <span>
                                 {u.followed ? <button disabled={props.followingInProgress.some(idi => idi === u.id)} onClick={() => {
-                                    debugger
-                                    props.followProgress(true)
+                                    props.followProgress(true, u.id)
                                     followApi.deleteFriend(u.id)
                                         .then(response => {
                                             if (response.data.resultCode == 0) {
                                                 props.unfollow(u.id)
                                             }
-                                            props.followProgress(false)
+                                            props.followProgress(false, u.id)
 
                                         })
 
                                 }}> Unfollow</button> :
                                     <button disabled={props.followingInProgress.some(idi => idi === u.id)} onClick={() => {
-                                        props.followProgress(true)
+                                        props.followProgress(true, u.id)
                                         followApi.addFriend(u.id).then(response => {
                                             if (response.data.resultCode == 0) {
                                                 props.follow(u.id)
                                             }
-                                            props.followProgress(false)
+                                            props.followProgress(false, u.id)
                                         })
 
                                     }} >Follow</button>}

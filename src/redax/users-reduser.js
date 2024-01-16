@@ -1,3 +1,5 @@
+import { userApi } from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -22,10 +24,22 @@ export const setFetching = (isFetching) => ({
   isFetching,
 });
 
-export const followProgress = (isFetching) => ({
+export const followProgress = (isFetching, userId) => ({
   type: TOGGLE_FollowProgress,
   isFetching,
+  userId,
 });
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setFetching(true));
+    userApi.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(setFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
 
 let initialState = {
   users: [],
@@ -33,7 +47,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
-  followingInProgress: [2, 3],
+  followingInProgress: [],
 };
 const usersReduser = (state = initialState, action) => {
   switch (action.type) {
@@ -85,11 +99,14 @@ const usersReduser = (state = initialState, action) => {
     case TOGGLE_FollowProgress:
       return {
         ...state,
-        followingInProgress: action.isFetching,
+        followingInProgress: action.isFetching
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((idi) => idi != action.userId),
       };
 
     default:
       return state;
   }
 };
+
 export default usersReduser;
