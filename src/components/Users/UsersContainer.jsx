@@ -34,6 +34,7 @@ class UsersContainer extends React.Component {
   }
 
   render() {
+    console.log('render', this.props)
     return <>
             {this.props.isFetching ? <Preloader/> : null}
       <Users
@@ -42,8 +43,8 @@ class UsersContainer extends React.Component {
         currentPage={this.props.currentPage}
         onPageChange={this.onPageChange}
         users={this.props.users}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
+        follow={this.props.follow.bind(this)}
+        unfollow={this.props.unfollow.bind(this)}
         followProgress={this.props.followProgress}
         followingInProgress={this.props.followingInProgress}
       />
@@ -72,11 +73,10 @@ const mapDispatchToProps = (dispatch) => {
     setTotalUsersCount,
     setFetching,
     followProgress,
-    getUsersThunk: (...args) => {
-      dispatch(getUsersThunk(...args))
+    getUsersThunk
     }
   }
-}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
 

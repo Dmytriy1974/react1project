@@ -71,6 +71,7 @@ let initialState = {
 const usersReduser = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
+      console.log('tryung to gf\fff')
       return {
         ...state,
         users: state.users.map((u) => {

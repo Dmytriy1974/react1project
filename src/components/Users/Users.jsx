@@ -42,6 +42,7 @@ let Users = (props) => {
                                     followApi.deleteFriend(u.id)
                                         .then(response => {
                                             if (response.data.resultCode == 0) {
+                                            
                                                 props.unfollow(u.id)
                                             }
                                             props.followProgress(false, u.id)
@@ -53,9 +54,10 @@ let Users = (props) => {
                                         props.followProgress(true, u.id)
                                         followApi.addFriend(u.id).then(response => {
                                             if (response.data.resultCode == 0) {
+                                                    console.log('folowwinf')
                                                 props.follow(u.id)
                                             }
-                                            props.followProgress(false, u.id)
+                                            // props.followProgress(false, u.id)
                                         })
 
                                     }} >Follow</button>}

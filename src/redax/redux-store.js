@@ -1,12 +1,10 @@
 import {
-  applyMiddleware,
   combineReducers,
-  configureStore,
-  legacy_createStore,
+  configureStore
 } from "@reduxjs/toolkit";
 import profileReduser from "./profile-reduser";
 import dialogsReduser from "./dialogs-reduser";
-import usersReduser, {contentSlice} from "./users-reduser";
+import usersReduser, { contentSlice } from "./users-reduser";
 import authReducer from "./auth-reduser";
 let redusers = combineReducers({
   profilePage: profileReduser,
