@@ -1,5 +1,5 @@
-import {followApi, userApi} from "../api/api";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { followApi, userApi } from "../api/api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -9,9 +9,9 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const SET_FETCHING = "SET_FETCHING";
 const TOGGLE_FollowProgress = "TOGGLE_FollowProgress";
 
-export const followSucces = (userId) => ({type: FOLLOW, userId});
-export const unfollowSucces = (userId) => ({type: UNFOLLOW, userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
+export const followSucces = (userId) => ({ type: FOLLOW, userId });
+export const unfollowSucces = (userId) => ({ type: UNFOLLOW, userId });
+export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({
   type: SET_CURRENT_Page,
   currentPage,
@@ -43,47 +43,48 @@ export const followProgress = (isFetching, userId) => ({
 // }
 // ;
 export const contentSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState: {},
   reducers: {},
-  },
-)
+});
 
-export const getUsersThunk = createAsyncThunk('users/get',
-  async (payload, {dispatch}) => {
-  dispatch(setFetching(true));
-  userApi.getUsers(payload?.pageNumber, payload?.pageSize).then((data) => {
-    dispatch(setFetching(false));
-    dispatch(setUsers(data.items));
-    dispatch(setTotalUsersCount(data.totalCount));
-  });
-})
+export const getUsersThunk = createAsyncThunk(
+  "users/get",
+  async (payload, { dispatch }) => {
+    dispatch(setFetching(true));
+    userApi.getUsers(payload?.pageNumber, payload?.pageSize).then((data) => {
+      dispatch(setFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  }
+);
 
+export const follow = createAsyncThunk(
+  "user/follow",
+  async (userId, { dispatch }) => {
+    dispatch(followProgress(true, userId));
+    followApi.addFriend(userId).then((response) => {
+      if (response.data.resultCode == 0) {
+        dispatch(followSucces(userId));
+      }
+      dispatch(followProgress(false, userId));
+    });
+  }
+);
 
-export const follow = createAsyncThunk ('user/follow',
-  async (payload, {dispatch}) => {
-    dispatch (followProgress(true, payload.userId))
-    followApi.addFriend(payload.userId).then(response => {
-        if (response.data.resultCode == 0) {
-          dispatch (followSucces (payload.userId))
-        }
-        dispatch (followProgress(false, payload.userId))
-    })
-})
-
-export const unfollow = createAsyncThunk ('user/unfollow',
-  async (payload, {dispatch}) => {
-    dispatch (followProgress(true, payload.userId))
-    followApi.deleteFriend(payload.userId)
-        .then(response => {
-            if (response.data.resultCode == 0) {
-              dispatch (unfollowSucces (payload.userId))
-            }
-            dispatch (followProgress(false, payload.userId))
-    })
-})
-
-
+export const unfollow = createAsyncThunk(
+  "user/unfollow",
+  async (userId, { dispatch }) => {
+    dispatch(followProgress(true, userId));
+    followApi.deleteFriend(userId).then((response) => {
+      if (response.data.resultCode == 0) {
+        dispatch(unfollowSucces(userId));
+      }
+      dispatch(followProgress(false, userId));
+    });
+  }
+);
 
 let initialState = {
   users: [],
@@ -96,12 +97,12 @@ let initialState = {
 const usersReduser = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
-      console.log('tryung to gf\fff')
+      console.log("tryung to gf\fff");
       return {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return {...u, followed: true};
+            return { ...u, followed: true };
           }
           return u;
         }),
