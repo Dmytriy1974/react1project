@@ -7,7 +7,7 @@ import { authApi } from '../../api/api';
 
 class HeaderComponent extends React.Component {
   componentDidMount() {
-    getAuthUserData()
+    this.props.getAuthUserData()
   }
   render() {
     return (

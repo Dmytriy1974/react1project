@@ -1,3 +1,6 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { profileApi } from "../api/api";
+
 const ADD_POSTS = "ADD-POSTS";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
 const Set_User_Profile = "Set_User_Profile"
@@ -7,6 +10,15 @@ export const updatePostChangeActionCreator = (text) => ({
   inputChange: text,
 });
 export const setUserProfile = (profile)=>({type:Set_User_Profile, profile})
+
+
+export const UserProfileData = createAsyncThunk (
+  "ProfileUser/data",
+  async (userId, { dispatch }) => {
+   profileApi.getUserProfile(userId).then ((response) => {
+dispatch(setUserProfile(response.data))
+   })
+  });
 
 let initialState = {
   postsData: [
