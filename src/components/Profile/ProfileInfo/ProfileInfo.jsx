@@ -1,5 +1,6 @@
 import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
+import userImg from '../../../assets/images/userImg.png'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -12,24 +13,24 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.descriptionBlock}>
                 <span>
-                    <img src={props.profile.photos.small} />
-                    <span>   </span>
-
-                    {props.profile.aboutMe}
-                    <span>   </span>
+                    <img src={props.profile.photos.small != null ? props.profile.photos.small : userImg} />
 
                 </span>
-                {props.profile.lookingForAJob ?  <span className={s.spanJob}>
-                        looking for a JOB: YES
-                    </span>:                    
+
+                {props.profile.aboutMe}
+                <span>   </span>
+
+                {props.profile.lookingForAJob ? <span className={s.spanJob}>
+                    looking for a JOB: YES
+                </span> :
                     <span className={s.spanJob}>
-                    looking for a JOB:
-                    <span>   </span>
-                    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbU-18kx749vd3oP2FSqZhbopz7iGtQI6iQA&usqp=CAU' />
-                </span>
+                        looking for a JOB:
+                        <span>   </span>
+                        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbU-18kx749vd3oP2FSqZhbopz7iGtQI6iQA&usqp=CAU' />
+                    </span>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

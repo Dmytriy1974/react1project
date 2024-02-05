@@ -15,12 +15,11 @@ const SET_USER_DATA = "SET_USER_DATA";
 //   }
 // );
 
-
 export const getAuthUserData = createAsyncThunk(
   "AuthUsers/data",
   async (payload, { dispatch }) => {
     try {
-      const response = await authApi.getAuthUserData();
+      const response = await authApi.me();
       if (response.data.resultCode === 0) {
         const { id, login, email } = response.data.data;
         dispatch(setAuthUserData(id, email, login));

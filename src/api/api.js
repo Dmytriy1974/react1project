@@ -14,33 +14,23 @@ export const userApi = {
         return response.data;
       });
   },
+  getProfile(userId) {
+    return instance.get(`profile/` + userId);
+  },
 };
 
-export const profileApi = {
-getUserProfile (userId) {
-return instance.get (`profile/` + userId)
-.then((response)=> {
-  return response
-})
-}}
-
 export const authApi = {
-  getAuthUserData() {
-    return instance.get(`auth/me`).then((response) => {
-      return response;
-    });
+  me() {
+    return instance.get(`auth/me`);
   },
 };
 
 export const followApi = {
   deleteFriend(userId) {
-    return instance.delete(`follow/${userId}`).then((response) => {
-      return response;
-    });
+    return instance.delete(`follow/${userId}`);
   },
+
   addFriend(userId) {
-    return instance.post(`follow/${userId}`).then((response) => {
-      return response;
-    });
+    return instance.post(`follow/${userId}`);
   },
 };

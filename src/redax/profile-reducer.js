@@ -1,24 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { profileApi } from "../api/api";
+import { userApi } from "../api/api";
 
 const ADD_POSTS = "ADD-POSTS";
 const UPDATE_POST_CHANGE = "UPDATE-POST-CHANGE";
-const Set_User_Profile = "Set_User_Profile"
+const Set_User_Profile = "Set_User_Profile";
 export const addPostActionCreator = () => ({ type: ADD_POSTS });
 export const updatePostChangeActionCreator = (text) => ({
   type: UPDATE_POST_CHANGE,
   inputChange: text,
 });
-export const setUserProfile = (profile)=>({type:Set_User_Profile, profile})
+export const setUserProfile = (profile) => ({
+  type: Set_User_Profile,
+  profile,
+});
 
-
-export const UserProfileData = createAsyncThunk (
+export const getUserProfile = createAsyncThunk(
   "ProfileUser/data",
   async (userId, { dispatch }) => {
-   profileApi.getUserProfile(userId).then ((response) => {
-dispatch(setUserProfile(response.data))
-   })
-  });
+    userApi.getProfile(userId).then((response) => {
+      dispatch(setUserProfile(response.data));
+    });
+  }
+);
 
 let initialState = {
   postsData: [
@@ -26,9 +29,9 @@ let initialState = {
     { id: 2, message: "It's my first message", likeCounts: 20 },
   ],
   newPostText: "it-kamasutra",
-  profile: null
+  profile: null,
 };
-const profileReduser = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_POST_CHANGE:
       return {
@@ -57,4 +60,4 @@ const profileReduser = (state = initialState, action) => {
       return state;
   }
 };
-export default profileReduser;
+export default profileReducer;
