@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './Dialogs.module.css'
 import Messages from './Messages/Messages'
 import AbonentsItem from './AbonentsItem/AbonentsItem'
@@ -6,11 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Dialogs = (props) => {
-  const navigate = useNavigate()
-    if (!props.isLoggin) {
-        return navigate("/login")
-    };
-
+    
     let dialogsElements = props.messagesPage.abonentData.map(abonent => <AbonentsItem name={abonent.name} key={abonent.id} id={abonent.id} img={abonent.img} />)
     const messagesElementsDim = props.messagesPage.messagesData.filter(mesg => mesg.fromDim === true)
     const messagesElementsElse = props.messagesPage.messagesData.filter(mesg => mesg.fromDim === false)
@@ -29,7 +25,7 @@ const Dialogs = (props) => {
         let text = newMsgElement.current.value
         props.updateMsgChange(text)
     }
-  
+
     return (
 
         <div className={s.dialogs}>

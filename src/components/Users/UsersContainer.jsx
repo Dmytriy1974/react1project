@@ -8,6 +8,8 @@ import {
 } from "../../redax/users-reduser";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import { withNavigate } from "../../hoc/withAuthRedirectComponent";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
   constructor(props) {
@@ -65,11 +67,14 @@ const mapDispatchToProps =  {
     };
 
 
-export default connect(mapStateToProps, {
+    export default compose (connect(mapStateToProps, {
   follow,
   unfollow,
   setCurrentPage,
   followProgress,
   getUsersThunk
-})(UsersContainer)
+}),
+  // withNavigate
+) (UsersContainer)
+
 

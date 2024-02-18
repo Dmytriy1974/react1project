@@ -1,3 +1,5 @@
+import { compose } from 'redux'
+import { withNavigate } from '../../hoc/withAuthRedirectComponent'
 import { addMessageCreateAction, updateMsgChangeCreateAction } from '../../redax/dialogs-reduser'
 import Dialogs from './Dialogs'
 import { connect } from 'react-redux'
@@ -7,7 +9,6 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state) => {
     return {
         messagesPage: state.messagesPage,
-        isLoggin: state.auth.isLoggin
     }
 }
 
@@ -18,6 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export default compose (
+    connect(mapStateToProps, mapDispatchToProps),
+    withNavigate
+) (Dialogs)
 
-export default DialogsContainer

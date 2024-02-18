@@ -1,6 +1,7 @@
 import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import userImg from '../../../assets/images/userImg.png'
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -8,9 +9,9 @@ const ProfileInfo = (props) => {
     }
     return (
         <div>
-            <div >
+            {/* <div >
                 <img className={s.img} src="https://i0.wp.com/www.flutterbeads.com/wp-content/uploads/2022/01/add-image-in-flutter-hero.png?fit=2850%2C1801&ssl=1" />
-            </div>
+            </div> */}
             <div className={s.descriptionBlock}>
                 <span>
                     <img src={props.profile.photos.small != null ? props.profile.photos.small : userImg} />
@@ -30,6 +31,7 @@ const ProfileInfo = (props) => {
                     </span>
                 }
             </div>
+            <ProfileStatus status ={'Hello, my friend'} />
         </div >
     )
 }
